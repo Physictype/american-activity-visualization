@@ -69,7 +69,7 @@ class Particle {
     idx;
 }
 function goofy_acceleration() {
-
+   //     (1+1/(1+Math.pow(e,4))*(2*Math.pow(e,8-2*d/d0)/Math.pow(Math.pow(e,4-d/d0),3)-Math.pow(e,4-d/d0)/Math.pow(Math.pow(e,4-d/d0)+1,2)
 }
 
 function elastic_collision(p1,p2) {
@@ -294,4 +294,4 @@ var moveInterval = setInterval(() => {
 //        .duration(400)
 //        .attr("d", line);
 // });
-// (1+1/(1+Math.pow(e,4))*(2*Math.pow(e,8-2*x)/Math.pow(Math.pow(e,4-x),3)-Math.pow(e,4-x)/Math.pow(Math.pow(e,4-x)+1,2)
+// 
