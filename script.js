@@ -105,6 +105,6 @@ function createChart(width, data, groups, transitionData,invalidation) {
   
   // Assuming 'invalidation' is a Promise
   const invalidation = Promise.resolve(); // Replace with actual invalidation logic
-  const chart = createChart(2000, data, groups,timeData,invalidation);
+  const chart = createChart(1000, data, groups,timeData,invalidation);
   document.body.appendChild(chart);
   
