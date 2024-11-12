@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <body>
+        
         <p id="time">00:00</p>
+        <button id="pauseplay" style="display:block">Pause/Play!</button>
+        <input type="range" min="10" max="2400" value="600" step="1" id="speedSlider" style="display:block">
         <!-- <script src="https://cdn.jsdelivr.net/npm/d3@7"></script> -->
         <script src="script.js" type="module"></script>
         <!-- <svg id="myPlot" style="width:500px;height:500px"></svg> -->
-        <div id="my_dataviz"></div>
+        <svg id="my_dataviz" style="width:1000px;height:1000px"></svg>
         <canvas id="cvs"></canvas>
     </body>
 </html>
