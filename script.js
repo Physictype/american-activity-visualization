@@ -256,6 +256,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 }
 const timeData = [];
 for (let i = 0; i < 288; i++) {
+	//TODO: Progress bar
 	timeData.push(await d3.json("markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
 }
 console.log(timeData);
