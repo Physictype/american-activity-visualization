@@ -219,6 +219,11 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 		})
 		.on("mouseout", function (d, i) {
 			d3.select(this).transition().duration(50).attr("opacity", "1");
+		})
+		.on("click", function (d, i) {
+			console.log("hey");
+			d.r *=2;
+			d3.select(this).transition().duration(50).attr("r", (d.r*2).toString());
 		});
 	function ticked() {
 		svg.selectAll("circle") // This creates a new circle for each data point
