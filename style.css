@@ -1,0 +1,33 @@
+#sidebar {
+    display: inline-block;
+    text-align:center;
+    top: 0px;
+    width: 300px;
+    height: 600px;
+    padding: 30px;
+    border-right: gray solid 2px;
+}
+#my_dataviz {
+    display: inline-block;
+    position:absolute;
+    top: 0px;
+    width:700px;
+    height:700px;
+}
+#pauseplay {
+    border-radius: 10px;
+    transform: translate(95px, 0);
+    border: #027adb 3px solid;
+    background-color: #038cfc;
+    color: #fefefe;
+    padding: 10px;
+}
+#pauseplay:hover {
+    background-color:#2e9af2;
+}
+#speedSlider {
+    padding: 10px;
+}
+body {
+    font-family: Roboto, Helvetica, sans-serif;
+}

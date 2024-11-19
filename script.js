@@ -68,11 +68,11 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	var paused = false;
 	// simulation.stop();
 	document.getElementById("pauseplay").addEventListener("click", () => {
-		if (paused) {
-			simulation.restart();
-		} else {
-			simulation.stop();
-		}
+		// if (paused) {
+		// 	simulation.restart();
+		// } else {
+		// 	simulation.stop();
+		// }
 		paused = !paused;
 	});
 	// Add event listeners to canvas
@@ -86,11 +86,68 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	function pointerMoved(event) {
 		const [x, y] = d3.pointer(event);
 	}
+	var currentTime = 0;
+	var minute = 0;
+	var second = 0;
 	var fiveminute = 0;
-	function changeNodeById(id) {
+	let changeTimes = [];
+	for (let i = 0; i < data.length; i++) {
+		let time = 5 * Math.random();
+		changeTimes.push(time);
+	}
+	setInterval(() => {
 		if (paused) {
 			return;
 		}
+		currentTime += speed / (60 * 1000);
+		if (currentTime>5*fiveminute+5) {
+			fiveminute ++;
+			fiveminute = fiveminute % 288;
+		}
+		if (currentTime>second/60+1/60) {
+			second ++;
+			second = second % 86400;
+			if (second >= 43200) {
+				document.getElementById("time").innerText =
+				((((second - (second % 60)) / 60)-((second - (second % 60)) / 60)%60)/60-12).toString().padStart(2, "0") +
+				":" +(((second - (second % 60)) / 60)%60).toString().padStart(2, "0") +
+					":" +
+					(second % 60).toString().padStart(2, "0")+" PM";
+			} else {
+				document.getElementById("time").innerText =
+			((((second - (second % 60)) / 60)-((second - (second % 60)) / 60)%60)/60).toString().padStart(2, "0") +
+			":" +(((second - (second % 60)) / 60)%60).toString().padStart(2, "0") +
+				":" +
+				(second % 60).toString().padStart(2, "0")+" AM";
+			}
+			if (document.getElementById("time").innerText.substring(0,2)=="00") {
+				document.getElementById("time").innerText="12"+document.getElementById("time").innerText.substring(2,11);
+			}
+			
+		}
+		for (let i = 0; i < data.length; i++) {
+			if (currentTime>changeTimes[i]) {
+				changeNodeById(i);
+				changeTimes[i]=5*fiveminute+5*Math.random()+5;
+			}
+		}
+	},1)
+	// function setRecurringChange(id) {
+	// 	let newTime = ((5 * 60 * 1000) / speed) * Math.random();
+	// 	changeNodeById(id);
+	// 	setTimeout(() => {
+	// 		setRecurringChange(id);
+	// 	}, newTime + (5 * 60 * 1000) / speed - changeTimes[id]);
+	// 	changeTimes[id] = newTime;
+	// }
+	// for (let i = 0; i < data.length; i++) {
+	// 	let time = ((5 * 60 * 1000) / speed) * Math.random();
+	// 	changeTimes[i] = time;
+	// 	setTimeout(() => {
+	// 		setRecurringChange(i);
+	// 	}, time);
+	// }
+	function changeNodeById(id) {
 		// console.log("oh gosh");
 		// console.log(transitionData[fiveminute]);
 		// console.log(transitionData.map(row => row[0]));
@@ -139,43 +196,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			);
 		simulation.alpha(1).restart();
 	}
-	let changeTimes = [];
-	function setRecurringChange(id) {
-		let newTime = ((5 * 60 * 1000) / speed) * Math.random();
-		changeNodeById(id);
-		setTimeout(() => {
-			setRecurringChange(id);
-		}, newTime + (5 * 60 * 1000) / speed - changeTimes[id]);
-		changeTimes[id] = newTime;
-	}
-	for (let i = 0; i < data.length; i++) {
-		let time = ((5 * 60 * 1000) / speed) * Math.random();
-		changeTimes[i] = time;
-		setTimeout(() => {
-			setRecurringChange(i);
-		}, time);
-	}
-	let minute = 0;
-	function setFiveMinuteInterval() {
-		setTimeout(() => {
-			fiveminute += 1;
-			fiveminute = fiveminute % 288;
-			setFiveMinuteInterval();
-		}, (5 * 60 * 1000) / speed);
-	}
-	function setMinuteInterval() {
-		setTimeout(() => {
-			minute += 1;
-			minute = minute % 1440;
-			document.getElementById("time").innerText =
-				((minute - (minute % 60)) / 60).toString().padStart(2, "0") +
-				":" +
-				(minute % 60).toString().padStart(2, "0");
-			setMinuteInterval();
-		}, (60 * 1000) / speed);
-	}
-	setFiveMinuteInterval();
-	setMinuteInterval();
+	
 	document.getElementById("speedSlider").addEventListener("change", (e) => {
 		speed = parseFloat(document.getElementById("speedSlider").value);
 		console.log((60 * 1000) / speed);
@@ -183,8 +204,8 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 
 	// console.log("hi");
 
-	var x = d3.scaleLinear([-500, 500], [0, 1000]);
-	var y = d3.scaleLinear([-500, 500], [0, 1000]);
+	var x = d3.scaleLinear([-400, 400], [0, 700]);
+	var y = d3.scaleLinear([-400, 400], [0, 700]);
 	svg.selectAll("circle")
 		.data(nodes)
 		.enter() // This creates a new circle for each data point
