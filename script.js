@@ -255,9 +255,11 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	return canvas;
 }
 const timeData = [];
+let loadingBar = document.getElementById("loadingBar");
 for (let i = 0; i < 288; i++) {
 	//TODO: Progress bar
 	timeData.push(await d3.json("markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
+	loadingBar.children[1].children[0].style.width=(i/288*100)+"px"
 }
 console.log(timeData);
 const activities = await d3.json("activitylist.json");

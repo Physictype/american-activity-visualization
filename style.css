@@ -1,3 +1,6 @@
+#simContainer {
+    filter: blur(2px);
+}
 #sidebar {
     display: inline-block;
     text-align:center;
@@ -30,4 +33,13 @@
 }
 body {
     font-family: Roboto, Helvetica, sans-serif;
+}
+#loadingBar {
+    /* text-align:center; */
+    display: block;
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 250px;
+    top: 300px;
 }
