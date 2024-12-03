@@ -17,7 +17,7 @@ function weightedRandom(items, weights) {
 }
 let activityDescs = {};
 await d3.csv("/Activity Descriptions.csv").then((x) => {
-	console.log(x[0]);
+	// console.log(x[0]);
 	for (let i = 0; i < x.length; i++) {
 		activityDescs[parseInt(x[i]["Code"])]=x[i].Description
 	}
@@ -34,6 +34,17 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	const context = canvas.getContext("2d");
 	const nodes = data.map((d) => Object.create(d));
 	const activityRange = [];
+	let selectIdx = 0;
+	let cameraFollowX = 0;
+	let cameraFollowY = 0;
+	let cameraX = 0;
+	let cameraY = 0;
+	let camSpeed = 0.05;
+	nodes[selectIdx].r=10;
+	let followingSelected = true;
+	document.getElementById("funfbutton").onclick = () => {
+		followingSelected = !followingSelected;
+	}
 	for (let i = 0; i < activities.length; i++) {
 		activityRange.push(i);
 	}
@@ -46,7 +57,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			"x",
 			d3
 				.forceX()
-				.x((d) => {console.log(d.group);return groups[Math.floor(activities[d.group] / 10000)].x})
+				.x((d) => groups[Math.floor(activities[d.group] / 10000)].x)
 				.strength(0.01)
 		)
 		.force(
@@ -60,7 +71,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			"collide",
 			d3
 				.forceCollide()
-				.radius((d) => d.r + 1)
+				.radius((d) => d.r+1)
 				.iterations(3)
 		)
 		// .force("charge",d3.forceCenter(width / 2, height / 2))
@@ -68,20 +79,8 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	var paused = false;
 	// simulation.stop();
 	document.getElementById("pauseplay").addEventListener("click", () => {
-		// if (paused) {
-		// 	simulation.restart();
-		// } else {
-		// 	simulation.stop();
-		// }
 		paused = !paused;
 	});
-	// Add event listeners to canvas
-	// d3.select(canvas)
-	//     .on("touchmove", event => event.preventDefault())
-	//     .on("pointermove", pointerMoved);
-
-	// Stop simulation on invalidation
-	// invalidation.then(() => simulation.stop());
 
 	function pointerMoved(event) {
 		const [x, y] = d3.pointer(event);
@@ -132,35 +131,22 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			}
 		}
 	},1)
-	// function setRecurringChange(id) {
-	// 	let newTime = ((5 * 60 * 1000) / speed) * Math.random();
-	// 	changeNodeById(id);
-	// 	setTimeout(() => {
-	// 		setRecurringChange(id);
-	// 	}, newTime + (5 * 60 * 1000) / speed - changeTimes[id]);
-	// 	changeTimes[id] = newTime;
-	// }
-	// for (let i = 0; i < data.length; i++) {
-	// 	let time = ((5 * 60 * 1000) / speed) * Math.random();
-	// 	changeTimes[i] = time;
-	// 	setTimeout(() => {
-	// 		setRecurringChange(i);
-	// 	}, time);
-	// }
 	function changeNodeById(id) {
-		// console.log("oh gosh");
-		// console.log(transitionData[fiveminute]);
-		// console.log(transitionData.map(row => row[0]));
 		let newGroup = weightedRandom(
 			activityRange,
 			transitionData[fiveminute][nodes[id].group]
 		);
 		if (typeof newGroup === "undefined") {
-			// console.log(nodes[id],transitionData[fiveminute][nodes[id].group])
 			return;
 		}
 		nodes[id].group = newGroup;
-		// console.log(nodes[randomNode].group)
+		simulation.force(
+			"collide",
+			d3
+				.forceCollide()
+				.radius((d) => d.r+1)
+				.iterations(3)
+		)
 		simulation
 			.force(
 				"x",
@@ -199,10 +185,17 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	
 	document.getElementById("speedSlider").addEventListener("change", (e) => {
 		speed = parseFloat(document.getElementById("speedSlider").value);
-		console.log((60 * 1000) / speed);
 	});
 
-	// console.log("hi");
+	document.getElementById("randomButton").onclick = () => {
+		let randomIdx = Math.floor(Math.random()*400);
+		// console.log(nodes.length)
+		nodes[randomIdx].r = 10;
+		nodes[selectIdx].r=4;
+		selectIdx = randomIdx;
+		svg.selectAll("circle").attr("r", (d) => d.r);
+	}
+
 
 	var x = d3.scaleLinear([-400, 400], [0, 700]);
 	var y = d3.scaleLinear([-400, 400], [0, 700]);
@@ -215,42 +208,48 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 		.attr("r", (d) => d.r) // Set the radius (r) of the circle
 		.attr("fill", "steelblue")
 		.on("mouseover", function (d, i) {
+			
 			d3.select(this).transition().duration(50).attr("opacity", ".5");
 		})
 		.on("mouseout", function (d, i) {
 			d3.select(this).transition().duration(50).attr("opacity", "1");
 		})
 		.on("click", function (d, i) {
-			console.log("hey");
-			d.r *=2;
-			d3.select(this).transition().duration(50).attr("r", (d.r*2).toString());
+			// console.log("hey",d,i,);
+			nodes[i.index].r = 10;
+			nodes[selectIdx].r=4;
+			selectIdx = i.index;
+			svg.selectAll("circle").attr("r", (d) => d.r);
+		}).nodes().forEach(circ => {
+			circ.addEventListener("mouseover", () => {
+				console.log("work?");
+			})
 		});
+	
 	function ticked() {
 		svg.selectAll("circle") // This creates a new circle for each data point
-			.attr("cx", (d) => x(d.x)) // Set the x-coordinate (cx) of the circle
-			.attr("cy", (d) => y(d.y)) // Set the y-coordinate (cy) of the circle
+			.attr("cx", (d) => x(d.x-cameraX)) // Set the x-coordinate (cx) of the circle
+			.attr("cy", (d) => y(d.y-cameraY)) // Set the y-coordinate (cy) of the circle
 			.attr("r", (d) => d.r) // Set the radius (r) of the circle
 			.attr("fill", (d) => color(activities[d.group] / 10000 / 14));
-		document.getElementById("testact").innerText = activityDescs[Math.floor(activities[nodes[0].group.toString()]/10000)]+"—"+activityDescs[Math.floor(activities[nodes[0].group.toString()]/100)]+"—"+activityDescs[activities[nodes[0].group.toString()]];
-		// context.clearRect(0, 0, width, height);
-		// context.save();
-		// context.translate(width / 2, height / 2);
-		// for (let i = 0; i < nodes.length; ++i) {
-		// 	const d = nodes[i];
-		// 	context.beginPath();
-
-		// 	context.moveTo(d.x + d.r, d.y);
-		// 	context.arc(d.x, d.y, d.r, 0, 2 * Math.PI);
-		// 	context.fillStyle = color(d.group / 14);
-		// 	context.fill();
-		// 	// console.log(d.x,d.y)
-		// }
-		// // context.fillStyle = "black";
-		// // for (let i = 0; i < groups.length; i++) {
-
-		// //   context.fillText(transitionData[i].Activity,groups[i].x*1.3,groups[i].y*1.3);
-		// // }
-		// context.restore();
+		document.getElementById("selectedID").innerText = selectIdx+1
+		let stringedActivity = activities[nodes[0].group.toString()].toString().padStart(6,'0');
+		let level1 = stringedActivity.substring(0,2);
+		let level2 = stringedActivity.substring(2,4);
+		let level3 = stringedActivity.substring(4,6);
+		document.getElementById("selectedActivityID").innerText = level1+"."+level2+"."+level3;
+		document.getElementById("level1Activity").innerText = activityDescs[parseInt(level1)];
+		document.getElementById("level2Activity").innerText = activityDescs[parseInt(level1+level2)];
+		document.getElementById("level3Activity").innerText = activityDescs[parseInt(level1+level2+level3)];
+		if (followingSelected) {
+			cameraFollowX = nodes[selectIdx].x;
+			cameraFollowY = nodes[selectIdx].y;
+		} else {
+			cameraFollowX = 0;
+			cameraFollowY = 0;
+		}
+		cameraX += (cameraFollowX-cameraX)*camSpeed;
+		cameraY += (cameraFollowY-cameraY)*camSpeed;
 	}
 	return canvas;
 }
@@ -258,7 +257,8 @@ const timeData = [];
 let loadingBar = document.getElementById("loadingBar");
 for (let i = 0; i < 288; i++) {
 	//TODO: Progress bar
-	timeData.push(await d3.json("markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
+	//https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-1.json
+	timeData.push(await d3.json("https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
 	loadingBar.children[1].children[0].style.width=(i/288*100)+"px"
 }
 console.log(timeData);

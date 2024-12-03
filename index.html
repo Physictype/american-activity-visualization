@@ -7,11 +7,22 @@
         
         <div id="simContainer">
             <div id="sidebar">
-                <h2 id="time">00:00:00</h2>
-                <p id="testact"></p>
+                <div id="controls">
+                    <h2 id="time">00:00:00</h2>
+                    <p id="testact"></p>
+                    <button id="pauseplay" style="display:block">Pause/Play!</button>
+                    <input type="range" min="10" max="2400" value="30" step="1" id="speedSlider" style="display:block">
+                </div>
                 
-                <button id="pauseplay" style="display:block">Pause/Play!</button>
-                <input type="range" min="10" max="2400" value="30" step="1" id="speedSlider" style="display:block">
+                <div id="info">
+                    <h3 style="text-align: center">Object #<span id="selectedID"></span></h3>
+                    <p>Activity ID: <span id="selectedActivityID"></span></p>
+                    <p>Level 1 Activity: <span id="level1Activity"></span></p>
+                    <p>Level 2 Activity: <span id="level2Activity"></span></p>
+                    <p>Level 3 Activity: <span id="level3Activity"></span></p>
+                    <button id="funfbutton">Follow/Unfollow</button>
+                    <button id="randomButton">Random ID</button>
+                </div>
             </div>
             <svg id="my_dataviz"></svg>
         </div>

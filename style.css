@@ -1,5 +1,13 @@
 #simContainer {
-    filter: blur(2px);
+    /* filter: blur(2px); */
+}
+#controls {
+    padding: 10px;
+    border-bottom: gray solid 2px;
+}
+#info {
+    padding: 10px;
+    text-align: left;
 }
 #sidebar {
     display: inline-block;
@@ -29,7 +37,9 @@
     background-color:#2e9af2;
 }
 #speedSlider {
-    padding: 10px;
+    position: relative;
+    display: inline-block;
+    left: 70px;
 }
 body {
     font-family: Roboto, Helvetica, sans-serif;
@@ -42,4 +52,8 @@ body {
     height: 300px;
     left: 250px;
     top: 300px;
+    opacity: 0;
 }
+circle {
+    pointer-events: all;
+  }
