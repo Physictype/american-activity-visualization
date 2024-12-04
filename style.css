@@ -53,6 +53,7 @@ body {
     left: 250px;
     top: 300px;
     opacity: 0;
+    pointer-events: none;
 }
 circle {
     pointer-events: all;

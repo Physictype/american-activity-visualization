@@ -258,7 +258,7 @@ let loadingBar = document.getElementById("loadingBar");
 for (let i = 0; i < 288; i++) {
 	//TODO: Progress bar
 	//https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-1.json
-	timeData.push(await d3.json("https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
+	timeData.push(await d3.json("/markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
 	loadingBar.children[1].children[0].style.width=(i/288*100)+"px"
 }
 console.log(timeData);
