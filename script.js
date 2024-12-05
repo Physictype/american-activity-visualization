@@ -233,7 +233,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			.attr("r", (d) => d.r) // Set the radius (r) of the circle
 			.attr("fill", (d) => color(activities[d.group] / 10000 / 14));
 		document.getElementById("selectedID").innerText = selectIdx+1
-		let stringedActivity = activities[nodes[0].group.toString()].toString().padStart(6,'0');
+		let stringedActivity = activities[nodes[selectIdx].group.toString()].toString().padStart(6,'0');
 		let level1 = stringedActivity.substring(0,2);
 		let level2 = stringedActivity.substring(2,4);
 		let level3 = stringedActivity.substring(4,6);
@@ -241,6 +241,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 		document.getElementById("level1Activity").innerText = activityDescs[parseInt(level1)];
 		document.getElementById("level2Activity").innerText = activityDescs[parseInt(level1+level2)];
 		document.getElementById("level3Activity").innerText = activityDescs[parseInt(level1+level2+level3)];
+		// console.log(activityDescs[parseInt(level1)],activityDescs[parseInt(level1+level2)],activityDescs[parseInt(level1+level2+level3)])
 		if (followingSelected) {
 			cameraFollowX = nodes[selectIdx].x;
 			cameraFollowY = nodes[selectIdx].y;

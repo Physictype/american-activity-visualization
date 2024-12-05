@@ -1,68 +1,68 @@
 Code,Description
-01,Personal Care Activities
-0101, Sleeping
+1,Personal Care Activities
+101, Sleeping
 10101,Sleeping
 10102,Sleeplessness
 10199,"Sleeping, n.e.c.*"
-0102, Grooming
+102, Grooming
 10201,"Washing, dressing and grooming oneself"
 10299,"Grooming, n.e.c.*"
-0103,Health-related self care
+103,Health-related self care
 10301,Health-related self care
 10399,"Self care, n.e.c.*"
-0104,Personal Activities
+104,Personal Activities
 10401,Personal/Private activities
 10499,"Personal activities, n.e.c.*"
-0105,Personal Care Emergencies
+105,Personal Care Emergencies
 10501,Personal emergencies
 10599,"Personal care emergencies, n.e.c.*"
-0199,"Personal care,  n.e.c.*"
+199,"Personal care,  n.e.c.*"
 19999,"Personal care, n.e.c.*"
-02,Household Activities
-0201,Housework
+2,Household Activities
+201,Housework
 20101,Interior cleaning
 20102,Laundry
 20103,"Sewing, repairing, & maintaining textiles"
 20104,"Storing interior hh items, inc. food"
 20199,"Housework, n.e.c.*"
-0202,"Food & Drink Preparation, Presentation, & Clean-up"
+202,"Food & Drink Preparation, Presentation, & Clean-up"
 20201,Food and drink preparation
 20202,Food presentation
 20203,Kitchen and food clean-up
 20299,"Food & drink prep, presentation, & clean-up, n.e.c.*"
-0203,"Interior Maintenance, Repair & Decoration"
+203,"Interior Maintenance, Repair & Decoration"
 20301,"Interior arrangement, decoration, & repairs"
 20302,Building and repairing furniture
 20303,Heating and cooling
 20399,"Interior maintenance, repair, & decoration, n.e.c.*"
-0204,"Exterior Maintenance, Repair & Decoration"
+204,"Exterior Maintenance, Repair & Decoration"
 20401,Exterior cleaning
 20402,"Exterior repair, improvements, & decoration"
 20499,"Exterior maintenance, repair & decoration, n.e.c.*"
-0205,"Lawn, Garden, and Houseplants"
+205,"Lawn, Garden, and Houseplants"
 20501,"Lawn, garden, and houseplant care"
 20502,"Ponds, pools, and hot tubs"
 20599,"Lawn and garden, n.e.c.*"
-0206,Animals and Pets
+206,Animals and Pets
 20681,Care for animals and pets (not veterinary care)
 20699,"Pet and animal care, n.e.c.*"
-0207,Vehicles
+207,Vehicles
 20701,Vehicle repair and maintenance (by self)
 20799,"Vehicles, n.e.c.*"
-0208,"Appliances, Tools, and Toys"
+208,"Appliances, Tools, and Toys"
 20801,"Appliance, tool, and toy set-up, repair, & maintenance (by self)"
 20899,"Appliances and tools, n.e.c.*"
-0209,Household Management
+209,Household Management
 20901,Financial management
 20902,Household & personal organization and planning
 20903,HH & personal mail & messages (except e-mail)
 20904,HH & personal e-mail and messages
 20905,Home security
 20999,"Household management, n.e.c.*"
-0299,"Household activities, n.e.c.*"
+299,"Household activities, n.e.c.*"
 29999,"Household activities, n.e.c.*"
-03,Caring For & Helping Household (HH) Members
-0301,Caring For & Helping HH Children
+3,Caring For & Helping Household (HH) Members
+301,Caring For & Helping HH Children
 30101,Physical care for hh children
 30102,Reading to/with hh children
 30103,"Playing with hh children, not sports"
@@ -75,34 +75,34 @@ Code,Description
 30111,Waiting for/with hh children
 30112,Picking up/dropping off hh children
 30199,"Caring for & helping hh children, n.e.c.*"
-0302,Activities Related to HH Children's Education
+302,Activities Related to HH Children's Education
 30201,Homework (hh children)
 30202,Meetings and school conferences (hh children)
 30203,Home schooling of hh children
 30204,Waiting associated with hh children's education
 30299,"Activities related to hh child's education, n.e.c.*"
-0303,Activities Related to HH Children's Health
+303,Activities Related to HH Children's Health
 30301,Providing medical care to hh children
 30302,Obtaining medical care for hh children
 30303,Waiting associated with hh children's health
 30399,"Activities related to hh child's health, n.e.c.*"
-0304,Caring for Household Adults
+304,Caring for Household Adults
 30401,Physical care for hh adults
 30402,Looking after hh adult (as a primary activity)
 30403,Providing medical care to hh adult
 30404,Obtaining medical and care services for hh adult
 30405,Waiting associated with caring for household adults
 30499,"Caring for household adults, n.e.c.*"
-0305,Helping Household Adults
+305,Helping Household Adults
 30501,Helping hh adults
 30502,Organization & planning for hh adults
 30503,Picking up/dropping off hh adult
 30504,Waiting associated with helping hh adults
 30599,"Helping household adults, n.e.c.*"
-0399,Caring For & Helping NonHH Members
+399,Caring For & Helping NonHH Members
 39999,"Caring for & helping hh members, n.e.c.*"
-04,Caring For & Helping Nonhousehold (NonHH) Members
-0401,Caring for & Helping Nonhousehold Children
+4,Caring For & Helping Nonhousehold (NonHH) Members
+401,Caring for & Helping Nonhousehold Children
 40101,Physical care for nonhh children
 40102,Reading to/with nonhh children
 40103,"Playing with nonhh children, not sports"
@@ -115,25 +115,25 @@ Code,Description
 40111,Waiting for/with nonhh children
 40112,Dropping off/picking up nonhh children
 40199,"Caring for and helping nonhh children, n.e.c.*"
-0402,Activities Related to Nonhh Children's Education
+402,Activities Related to Nonhh Children's Education
 40201,Homework (nonhh children)
 40202,Meetings and school conferences (nonhh children)
 40203,Home schooling of nonhh children
 40204,Waiting associated with nonhh children's education
 40299,"Activities related to nonhh child's educ., n.e.c.*"
-0403,Activities Related to Nonhh Children's Health
+403,Activities Related to Nonhh Children's Health
 40301,Providing medical care to nonhh children
 40302,Obtaining medical care for nonhh children
 40303,Waiting associated with nonhh children's health
 40399,"Activities related to nonhh child's health, n.e.c.*"
-0404,Caring For Nonhousehold Adults
+404,Caring For Nonhousehold Adults
 40401,Physical care for nonhh adults
 40402,Looking after nonhh adult (as a primary activity)
 40403,Providing medical care to nonhh adult
 40404,Obtaining medical and care services for nonhh adult
 40405,Waiting associated with caring for nonhh adults
 40499,"Caring for nonhh adults, n.e.c.*"
-0405,Helping Nonhousehold Adults
+405,Helping Nonhousehold Adults
 40501,"Housework, cooking, & shopping assistance for nonhh adults"
 40502,House & lawn maintenance & repair assistance for nonhh adults
 40503,Animal & pet care assistance for nonhh adults
@@ -143,134 +143,134 @@ Code,Description
 40507,Picking up/dropping off nonhh adult
 40508,Waiting associated with helping nonhh adults
 40599,"Helping nonhh adults, n.e.c.*"
-0499,"Caring For & Helping Nonhousehold Adults, n.e.c.*"
+499,"Caring For & Helping Nonhousehold Adults, n.e.c.*"
 49999,"Caring for & helping nonhh members, n.e.c.*"
-05,Work & Work-Related Activities
-0501,Working
+5,Work & Work-Related Activities
+501,Working
 50101,"Work, main job"
 50102,"Work, other job(s)"
 50103,Security procedures related to work
 50189,"Working, n.e.c.*"
-0502,Work-Related Activities
+502,Work-Related Activities
 50201,"Socializing, relaxing, and leisure as part of job"
 50202,Eating and drinking as part of job
 50203,Sports and exercise as part of job
 50204,Security procedures as part of job
 50289,"Work-related activities, n.e.c.*"
-0503,Other Income-Generating Activities
+503,Other Income-Generating Activities
 50301,"Income-generating hobbies, crafts, and food"
 50302,Income-generating performances
 50303,Income-generating services
 50304,Income-generating rental property activities
 50389,"Other income-generating activities, n.e.c.*"
-0504,Job Search and Interviewing
+504,Job Search and Interviewing
 50481,Job search activities
 50403,Job interviewing
 50404,Waiting associated with job search or interview
 50405,Security procedures rel. to job search/interviewing
 50499,"Job search and Interviewing, n.e.c.*"
-0599,"Work and Work-Related Activities, n.e.c.*"
+599,"Work and Work-Related Activities, n.e.c.*"
 59999,"Work and work-related activities, n.e.c.*"
-06,Education
-0601,Taking Class
+6,Education
+601,Taking Class
 60101,"Taking class for degree, certification, or licensure"
 60102,Taking class for personal interest
 60103,Waiting associated with taking classes
 60104,Security procedures rel. to taking classes
 60199,"Taking class, n.e.c.*"
-0602,Extracurricular School Activities (Except Sports)
+602,Extracurricular School Activities (Except Sports)
 60201,Extracurricular club activities
 60202,Extracurricular music & performance activities
 60203,Extracurricular student government activities
 60289,"Education-related extracurricular activities, n.e.c.*"
-0603,Research/Homework
+603,Research/Homework
 60301,"Research/homework for class for degree, certification, or licensure"
 60302,Research/homework for class for pers. interest
 60303,Waiting associated with research/homework
 60399,Research/homework n.e.c.*
-0604,Registration/Administrative activities
+604,Registration/Administrative activities
 60401,"Administrative activities: class for degree, certification, or licensure"
 60402,Administrative activities: class for personal interest
 60403,Waiting associated w/admin. activities (education)
 60499,"Administrative for education, n.e.c.*"
-0699,"Education, n.e.c.*"
+699,"Education, n.e.c.*"
 69999,"Education, n.e.c.*"
-07,Consumer Purchases
-0701,"Shopping (Store, Telephone, Internet)"
+7,Consumer Purchases
+701,"Shopping (Store, Telephone, Internet)"
 70101,Grocery shopping
 70102,Purchasing gas
 70103,Purchasing food (not groceries)
 70104,"Shopping, except groceries, food and gas"
 70105,Waiting associated with shopping
 70199,"Shopping, n.e.c.*"
-0702,Researching Purchases
+702,Researching Purchases
 70201,Comparison shopping
 70299,"Researching purchases, n.e.c.*"
-0703,Security Procedures Related to Consumer Purchases
+703,Security Procedures Related to Consumer Purchases
 70301,Security procedures rel. to consumer purchases
 70399,"Security procedures rel. to consumer purchases, n.e.c.*"
-0799,"Consumer Purchases, n.e.c.*"
+799,"Consumer Purchases, n.e.c.*"
 79999,"Consumer purchases, n.e.c.*"
-08,Professional & Personal Care Services
-0801,Professional & Personal Care Services
+8,Professional & Personal Care Services
+801,Professional & Personal Care Services
 80101,Using paid childcare services
 80102,Waiting associated w/purchasing childcare svcs
 80199,"Using paid childcare services, n.e.c.*"
-0802,Financial Services and Banking
+802,Financial Services and Banking
 80201,Banking
 80202,Using other financial services
 80203,Waiting associated w/banking/financial services
 80299,"Using financial services and banking, n.e.c.*"
-0803,Legal Services
+803,Legal Services
 80301,Using legal services
 80302,Waiting associated with legal services
 80399,"Using legal services, n.e.c.*"
-0804,Medical and Care Services
+804,Medical and Care Services
 80401,Using health and care services outside the home
 80402,Using in-home health and care services
 80403,Waiting associated with medical services
 80499,"Using medical services, n.e.c.*"
-0805,Personal Care Services
+805,Personal Care Services
 80501,Using personal care services
 80502,Waiting associated w/personal care services
 80599,"Using personal care services, n.e.c.*"
-0806,Real Estate
+806,Real Estate
 80601,Activities rel. to purchasing/selling real estate
 80602,Waiting associated w/purchasing/selling real estate
 80699,"Using real estate services, n.e.c.*"
-0807,Veterinary Services (excluding grooming)
+807,Veterinary Services (excluding grooming)
 80701,Using veterinary services
 80702,Waiting associated with veterinary services
 80799,"Using veterinary services, n.e.c.*"
-0808,Security Procedures Related to Professional/Personal Services
+808,Security Procedures Related to Professional/Personal Services
 80801,Security procedures rel. to professional/personal svcs.
 80899,Security procedures rel. to professional/personal svcs n.e.c.*
-0899,"Professional and Personal Services, n.e.c.*"
+899,"Professional and Personal Services, n.e.c.*"
 89999,"Professional and personal services, n.e.c.*"
-09,Household Services
-0901,Household Services (not done by self)
+9,Household Services
+901,Household Services (not done by self)
 90101,Using interior cleaning services
 90102,Using meal preparation services
 90103,Using clothing repair and cleaning services
 90104,Waiting associated with using household services
 90199,"Using household services, n.e.c.*"
-0902,Home Maintenance/Repair/Décor/Construction (not done by self)
+902,Home Maintenance/Repair/Décor/Construction (not done by self)
 90201,Using home maint/repair/décor/construction svcs
 90202,Waiting associated w/ home main/repair/décor/constr
 90299,"Using home maint/repair/décor/constr services, n.e.c.*"
-0903,"Pet Services (not done by self, not vet)"
+903,"Pet Services (not done by self, not vet)"
 90301,Using pet services
 90302,Waiting associated with pet services
 90399,"Using pet services, n.e.c.*"
-0904,Lawn & Garden Services (not done by self)
+904,Lawn & Garden Services (not done by self)
 90401,Using lawn and garden services
 90402,Waiting associated with using lawn & garden services
 90499,"Using lawn and garden services, n.e.c.*"
-0905,Vehicle Maintenance & Repair Services (not done by self)
+905,Vehicle Maintenance & Repair Services (not done by self)
 90501,Using vehicle maintenance or repair services
 90502,Waiting associated with vehicle main. or repair svcs
 90599,"Using vehicle maint. & repair svcs, n.e.c.*"
-0999,"Household Services, n.e.c.*"
+999,"Household Services, n.e.c.*"
 99999,"Using household services, n.e.c.*"
 10,Government Services & Civic Obligations
 1001,Using Government Services
