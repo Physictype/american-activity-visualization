@@ -16,7 +16,7 @@ function weightedRandom(items, weights) {
 	}
 }
 let activityDescs = {};
-await d3.csv("/Activity Descriptions.csv").then((x) => {
+await d3.csv("Activity Descriptions.csv").then((x) => {
 	// console.log(x[0]);
 	for (let i = 0; i < x.length; i++) {
 		activityDescs[parseInt(x[i]["Code"])]=x[i].Description
@@ -352,7 +352,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 }
 var timeData = [];
 let loadingBar = document.getElementById("loadingBar");
-await Promise.all(Array(288).keys().map((x) => d3.json("/markovchain-3deep-0323/markovchain-3deep-0323-"+x.toString()+".json"))).then((values) => {
+await Promise.all(Array(288).keys().map((x) => d3.json("markovchain-3deep-0323/markovchain-3deep-0323-"+x.toString()+".json"))).then((values) => {
 	timeData = values;
 })
 // for (let i = 0; i < 288; i++) {
