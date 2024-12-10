@@ -28,7 +28,7 @@
 #pauseplay {
     border-radius: 10px;
     transform: translate(95px, 0);
-    border: #027adb 3px solid;
+    border: #027adb 1px solid;
     background-color: #038cfc;
     color: #fefefe;
     padding: 10px;
@@ -58,3 +58,8 @@ body {
 circle {
     pointer-events: all;
   }
+/* #buttons {
+    display: block;
+    position: absolute;
+    bottom: 300px;
+} */

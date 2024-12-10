@@ -94,17 +94,40 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 		let time = 5 * Math.random();
 		changeTimes.push(time);
 	}
-	setInterval(() => {
+	function setApproxInterval(callback, interval) {
+		let running = true
+		const startTime = Date.now()
+		
+		const loop = (nthRun) => {
+			const targetTime = nthRun * interval + startTime
+			const timeout = targetTime - Date.now()
+			setTimeout(() => {
+			if (running) {
+				callback()
+				loop(nthRun + 1)
+			}
+			}, timeout)
+		}
+		
+		loop(1)
+		return () => running = false
+	}
+	
+	function clearApproxInterval(stopInterval) {
+		stopInterval()
+	}
+	setApproxInterval(() => {
 		if (paused) {
 			return;
 		}
+		speed = parseFloat(document.getElementById("speedSlider").value);
 		currentTime += speed / (60 * 1000);
 		if (currentTime>5*fiveminute+5) {
-			fiveminute ++;
+			fiveminute = Math.floor(currentTime/5);
 			fiveminute = fiveminute % 288;
 		}
 		if (currentTime>second/60+1/60) {
-			second ++;
+			second = Math.floor(currentTime*60);
 			second = second % 86400;
 			if (second >= 43200) {
 				document.getElementById("time").innerText =
@@ -130,7 +153,46 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 				changeTimes[i]=5*fiveminute+5*Math.random()+5;
 			}
 		}
-	},1)
+
+	},5)
+	// setInterval(() => {
+	// 	if (paused) {
+	// 		return;
+	// 	}
+	// 	currentTime += speed / (60 * 1000);
+	// 	if (currentTime>5*fiveminute+5) {
+	// 		fiveminute ++;
+	// 		fiveminute = fiveminute % 288;
+	// 	}
+	// 	if (currentTime>second/60+1/60) {
+	// 		second ++;
+	// 		second = second % 86400;
+	// 		if (second >= 43200) {
+	// 			document.getElementById("time").innerText =
+	// 			((((second - (second % 60)) / 60)-((second - (second % 60)) / 60)%60)/60-12).toString().padStart(2, "0") +
+	// 			":" +(((second - (second % 60)) / 60)%60).toString().padStart(2, "0") +
+	// 				":" +
+	// 				(second % 60).toString().padStart(2, "0")+" PM";
+	// 		} else {
+	// 			document.getElementById("time").innerText =
+	// 		((((second - (second % 60)) / 60)-((second - (second % 60)) / 60)%60)/60).toString().padStart(2, "0") +
+	// 		":" +(((second - (second % 60)) / 60)%60).toString().padStart(2, "0") +
+	// 			":" +
+	// 			(second % 60).toString().padStart(2, "0")+" AM";
+	// 		}
+	// 		if (document.getElementById("time").innerText.substring(0,2)=="00") {
+	// 			document.getElementById("time").innerText="12"+document.getElementById("time").innerText.substring(2,11);
+	// 		}
+			
+	// 	}
+	// 	for (let i = 0; i < data.length; i++) {
+	// 		if (currentTime>changeTimes[i]) {
+	// 			changeNodeById(i);
+	// 			changeTimes[i]=5*fiveminute+5*Math.random()+5;
+	// 		}
+	// 	}
+
+	// },1)
 	function changeNodeById(id) {
 		let newGroup = weightedRandom(
 			activityRange,
@@ -157,6 +219,7 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 							typeof groups[Math.floor(activities[d.group] / 10000)] ==
 							"undefined"
 						) {
+							console.log(Math.floor(activities[d.group] / 10000));
 							// console.log(d.group);
 							return 10000;
 						}
@@ -190,10 +253,21 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	document.getElementById("randomButton").onclick = () => {
 		let randomIdx = Math.floor(Math.random()*400);
 		// console.log(nodes.length)
-		nodes[randomIdx].r = 10;
+		nodes[randomIdx].r=10;
 		nodes[selectIdx].r=4;
 		selectIdx = randomIdx;
 		svg.selectAll("circle").attr("r", (d) => d.r);
+		simulation.force(
+			"collide",
+			d3
+				.forceCollide()
+				.radius((d) => d.r+1)
+				.iterations(3)
+		)
+		simulation.alpha(1).restart();
+	}
+	document.getElementById("forceTransition").onclick = () => {
+		changeNodeById(selectIdx);
 	}
 
 
@@ -220,6 +294,14 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 			nodes[selectIdx].r=4;
 			selectIdx = i.index;
 			svg.selectAll("circle").attr("r", (d) => d.r);
+			simulation.force(
+				"collide",
+				d3
+					.forceCollide()
+					.radius((d) => d.r+1)
+					.iterations(3)
+			)
+			simulation.alpha(1).restart();
 		}).nodes().forEach(circ => {
 			circ.addEventListener("mouseover", () => {
 				console.log("work?");
@@ -230,8 +312,22 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 		svg.selectAll("circle") // This creates a new circle for each data point
 			.attr("cx", (d) => x(d.x-cameraX)) // Set the x-coordinate (cx) of the circle
 			.attr("cy", (d) => y(d.y-cameraY)) // Set the y-coordinate (cy) of the circle
-			.attr("r", (d) => d.r) // Set the radius (r) of the circle
-			.attr("fill", (d) => color(activities[d.group] / 10000 / 14));
+			.attr("r", (d) => {
+				if (d.index == selectIdx) {
+					return d.r-1;
+				} else {
+					return d.r;
+				}
+			}) // Set the radius (r) of the circle
+			.attr("fill", (d) => color(activities[d.group] / 10000 / 14))
+			.attr("stroke-width",(d) => {
+				if (d.index == selectIdx) {
+					return 2;
+				} else {
+					return 0;
+				}
+			})
+			.attr("stroke",(d) => "black");
 		document.getElementById("selectedID").innerText = selectIdx+1
 		let stringedActivity = activities[nodes[selectIdx].group.toString()].toString().padStart(6,'0');
 		let level1 = stringedActivity.substring(0,2);
@@ -254,14 +350,17 @@ function createChart(width, data, groups, transitionData, activities,invalidatio
 	}
 	return canvas;
 }
-const timeData = [];
+var timeData = [];
 let loadingBar = document.getElementById("loadingBar");
-for (let i = 0; i < 288; i++) {
-	//TODO: Progress bar
-	//https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-1.json
-	timeData.push(await d3.json("/markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
-	loadingBar.children[1].children[0].style.width=(i/288*100)+"px"
-}
+await Promise.all(Array(288).keys().map((x) => d3.json("/markovchain-3deep-0323/markovchain-3deep-0323-"+x.toString()+".json"))).then((values) => {
+	timeData = values;
+})
+// for (let i = 0; i < 288; i++) {
+// 	//TODO: Progress bar
+// 	//https://cdn.jsdelivr.net/gh/physictype/usa-activity-visualization@latest/markovchain-3deep-0323/markovchain-3deep-0323-1.json
+// 	timeData.push(await d3.json("/markovchain-3deep-0323/markovchain-3deep-0323-"+i.toString()+".json"))
+// 	loadingBar.children[1].children[0].style.width=(i/288*100)+"px"
+// }
 console.log(timeData);
 const activities = await d3.json("activitylist.json");
 let radius = 280;
