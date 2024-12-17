@@ -363,7 +363,7 @@ await Promise.all(Array(288).keys().map((x) => d3.json("markovchain-3deep-0323/m
 // }
 console.log(timeData);
 const activities = await d3.json("activitylist.json");
-let radius = 280;
+let radius = 320;
 let groups = {};
 let activitiesdeep1=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50]
 for (let i = 0; i < 18; i++) {
@@ -374,9 +374,10 @@ for (let i = 0; i < 18; i++) {
 }
 // Usage example
 const data = [];
+const activityStarts = await d3.json("activitystarts.json")
 for (let i = 0; i < 400; i++) {
 	data.push({
-		group: Math.floor(Math.random()*activities.length),
+		group: weightedRandom(activitiesdeep1,activityStarts),
 		r: 4,
 	});
 }
